@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  api-server:
+    container_name: api-server
+    build:
+      context: ./api-server
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    tty: true
+    volumes:
+      - ./api-server/:/app

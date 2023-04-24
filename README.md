@@ -1,4 +1,4 @@
-# test-express-localstack-lambda
+# test-express-localstack
 
 Express + LocalStack による API テスト
 

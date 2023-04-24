@@ -1,6 +1,21 @@
 version: "3.8"
 
 services:
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:2.0.2
+    ports:
+      - 4566:4566
+    environment:
+      - DEBUG=1 # ログ出力
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LAMBDA_FUNCTION_NAME=hello-world
+      - LAMBDA_FUNCTION_REGION=ap-northeast-1
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./lambda/hello-world/initaws:/etc/localstack/init/ready.d" # 初期化スクリプト
+      - "./lambda/hello-world/src:/workspace/lambda/hello-world/src" # ソースコード
+
   api-server:
     container_name: api-server
     build:
